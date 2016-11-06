@@ -1,0 +1,7 @@
+.filter-form
+  = form_tag tasks_path, :method => 'get' do
+    span Filter by priority
+    = select_tag :priority, options_for_select([1, 2, 3, 4, 5], params[:priority])
+    = submit_tag "Search"
+
+  = link_to 'All tasks', tasks_path

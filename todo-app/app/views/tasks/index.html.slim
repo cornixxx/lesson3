@@ -1,0 +1,26 @@
+p#notice= notice
+h1 Tasks
+
+= render 'filter_form'
+
+table.list
+  thead
+    th colspan='2'
+    th Title
+    th Priority
+    th Status
+    th
+  tbody
+    - @tasks.each do |task|
+      tr
+        td= link_to task_path(task, task: {status: 'resolved'}), method: :put
+          i.fa.fa-check
+        td= link_to task_path(task, task: {status: 'closed'}), method: :put
+          i.fa.fa-times
+        td= task.title
+        td= task.priority
+        td= task.status
+        td= link_to task, method: :delete, data: { confirm: 'Are you sure?' }
+          i.fa.fa-trash
+= will_paginate @tasks
+= render 'form'
